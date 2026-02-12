@@ -1,15 +1,20 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "server.js",
-      "use": "@vercel/node"
+  "functions": {
+    "api/health.js": {
+      "maxDuration": 10
+    },
+    "api/shorten.js": {
+      "maxDuration": 10
+    },
+    "api/[code].js": {
+      "maxDuration": 10
+    },
+    "api/analytics.js": {
+      "maxDuration": 10
     }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/server.js"
-    }
-  ]
+  },
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
