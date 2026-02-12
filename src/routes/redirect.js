@@ -6,12 +6,12 @@ const URLService = require('../utils/URLService');
  * GET /:code
  * Redirect to original URL and record analytics
  */
-router.get('/:code', async (req, res) => {
+router.get('/:code', async (req, res, next) => {
   try {
     const { code } = req.params;
     
-    // Skip if it's an API route
-    if (code === 'api' || code === 'health') {
+    // Skip if it's an API route or static files
+    if (code === 'api' || code === 'health' || code.includes('.')) {
       return next();
     }
 

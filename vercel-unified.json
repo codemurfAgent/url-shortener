@@ -1,0 +1,88 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server/api/create-url.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "server/api/redirect-to.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "server/api/analytics-detailed.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "server/api/health-unified.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/create",
+      "dest": "/server/api/create-url.js"
+    },
+    {
+      "src": "/api/shorten",
+      "dest": "/server/api/create-url.js"
+    },
+    {
+      "src": "/api/analytics",
+      "dest": "/server/api/analytics-detailed.js"
+    },
+    {
+      "src": "/api/health",
+      "dest": "/server/api/health-unified.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/server/api/redirect-to.js"
+    }
+  ],
+  "functions": {
+    "server/api/create-url.js": {
+      "maxDuration": 10
+    },
+    "server/api/redirect-to.js": {
+      "maxDuration": 10
+    },
+    "server/api/analytics-detailed.js": {
+      "maxDuration": 15
+    },
+    "server/api/health-unified.js": {
+      "maxDuration": 10
+    }
+  },
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "build": {
+    "env": {
+      "POSTGRES_URL": "@postgres_url"
+    }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ]
+}

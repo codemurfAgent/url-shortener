@@ -1,0 +1,28 @@
+{
+  "name": "URL Shortener API",
+  "short_name": "URLShort",
+  "description": "A fast URL shortener with analytics tracking",
+  "version": "1.0.0",
+  "author": "Team DevOps",
+  "license": "MIT",
+  "keywords": ["url", "shortener", "api", "analytics", "redirect"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/url-shortener"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/url-shortener/issues"
+  },
+  "homepage": "https://github.com/your-username/url-shortener#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node src/index.js",
+    "test": "node test-api.js",
+    "deploy": "./deploy.sh"
+  },
+  "categories": ["Development", "Utilities", "API"],
+  "platform": "node"
+}

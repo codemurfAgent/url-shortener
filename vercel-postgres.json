@@ -1,0 +1,61 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server/api/health-postgres.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "server/api/shorten-postgres.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "server/api/redirect-postgres.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "server/api/analytics-postgres.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/health",
+      "dest": "/server/api/health-postgres.js"
+    },
+    {
+      "src": "/api/shorten",
+      "dest": "/server/api/shorten-postgres.js"
+    },
+    {
+      "src": "/api/analytics",
+      "dest": "/server/api/analytics-postgres.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/server/api/redirect-postgres.js"
+    }
+  ],
+  "functions": {
+    "server/api/health-postgres.js": {
+      "maxDuration": 10
+    },
+    "server/api/shorten-postgres.js": {
+      "maxDuration": 10
+    },
+    "server/api/redirect-postgres.js": {
+      "maxDuration": 10
+    },
+    "server/api/analytics-postgres.js": {
+      "maxDuration": 10
+    }
+  },
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "build": {
+    "env": {
+      "POSTGRES_URL": "@postgres_url"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "url-shortener",
+  "version": "2.0.0",
+  "description": "Production-ready URL shortener with PostgreSQL database",
+  "main": "FIXED_UNIFIED_IMPLEMENTATION.js",
+  "scripts": {
+    "start": "node FIXED_UNIFIED_IMPLEMENTATION.js",
+    "dev": "nodemon FIXED_UNIFIED_IMPLEMENTATION.js",
+    "test": "node test-unified.js",
+    "setup": "node setup-database.js"
+  },
+  "keywords": ["url", "shortener", "api", "analytics", "postgresql"],
+  "author": "Dev Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.0.0",
+    "pg": "^8.11.3",
+    "nanoid": "^3.3.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
